@@ -351,7 +351,8 @@ class MiniMediaPlayer extends LitElement {
   computeStyles(): DirectiveResult<typeof StyleMapDirective> {
     const { scale } = this.config;
     const foreground = this.foregroundColor
-      || (this.config.artwork === 'material' ? 'var(--mmp-base-color)' : '');
+      || (this.config.artwork === 'material' && this.player.hasArtwork && this.thumbnail
+        ? 'var(--mmp-base-color)' : '');
     return styleMap({
       ...(scale && { '--mmp-unit': `${40 * scale}px` }),
       ...(foreground &&
